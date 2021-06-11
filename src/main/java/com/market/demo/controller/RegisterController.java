@@ -5,26 +5,26 @@ import com.market.demo.entity.User;
 import com.market.demo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-public class LoginController {
+public class RegisterController {
     @Autowired
     UserRepository userRepository;
-    @PostMapping(value = {"/login"})
     @ResponseBody
-    public String login(@RequestBody String username, String password){
+    public String register(@RequestBody String username, String password, String email){
         JSONObject result = new JSONObject();
-        User user = userRepository.findUserByUsername(username);
-        if (user==null|| !password.equals(user.password)){
+        if (userRepository.findUserByUsername(username)!=null){
             result.put("flag",0);
         }
         else {
+            User user = new User();
+            user.username = username;
+            user.email = email;
+            user.password = password;
+            userRepository.save(user);
             result.put("flag",1);
-            result.put("id",user.id);
-            result.put("username",username);
         }
         return result.toJSONString();
     }
