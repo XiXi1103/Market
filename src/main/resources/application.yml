@@ -1,9 +1,20 @@
+
+
 spring:
+  session:
+    timeout: PT30M
+#    store-type: redis
   datasource:
-      url: jdbc:mysql://49.232.157.22:3307/javaee
+      url: jdbc:mysql://49.232.157.22:3306/javaee
       username: javaee
       password: javaee
       driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
       hibernate:
         ddl-auto: update
+
+  redis:
+    host: 49.232.157.22
+    password: javaee
+    timeout: PT30M
+    port: 6379
