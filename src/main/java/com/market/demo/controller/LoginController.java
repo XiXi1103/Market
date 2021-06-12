@@ -25,7 +25,9 @@ public class LoginController {
         User user = userRepository.findUserByUsername(username);
         if (user==null|| !password.equals(user.password)){
             result.put("flag",0);
-
+//            HttpSession session = request.getSession();
+//            session.setAttribute("username",username);
+//            result.put("name",request.getSession().getAttribute("username"));
         }
         else {
             result.put("flag",1);
