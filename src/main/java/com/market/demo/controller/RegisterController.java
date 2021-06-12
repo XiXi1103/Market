@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class RegisterController {
     @Autowired
     UserRepository userRepository;
-    @PostMapping(value = "/register")
     @ResponseBody
     public String register(@RequestBody String username, String password, String email){
         JSONObject result = new JSONObject();
